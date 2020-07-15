@@ -12,7 +12,7 @@
     "fast-stable-stringify": "latest",
     "faster-stable-stringify": "latest",
     "json-stable-stringify": "latest",
-    "nyc": "^14.1.0",
+    "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "tape": "^4.11.0"
   },
