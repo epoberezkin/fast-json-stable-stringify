@@ -25,6 +25,9 @@
     "type": "git",
     "url": "git://github.com/epoberezkin/fast-json-stable-stringify.git"
   },
+  "files": [
+    "index.js"
+  ],
   "homepage": "https://github.com/epoberezkin/fast-json-stable-stringify",
   "keywords": [
     "json",
