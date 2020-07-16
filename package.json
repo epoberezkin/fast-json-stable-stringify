@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "deterministic `JSON.stringify()` - a faster version of substack's json-stable-strigify without jsonify",
   "main": "index.js",
+  "module": "esm.js",
   "types": "index.d.ts",
   "dependencies": {},
   "devDependencies": {
