@@ -8,7 +8,7 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "coveralls": "^3.0.0",
-    "eslint": "^6.7.0",
+    "eslint": "^7.22.0",
     "fast-stable-stringify": "latest",
     "faster-stable-stringify": "latest",
     "json-stable-stringify": "latest",
