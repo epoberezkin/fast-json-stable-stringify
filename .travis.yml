@@ -4,5 +4,13 @@ node_js:
   - 10
   - 12
   - 14
+script: >
+  node_version="$(node -v)";
+  if  [ "${node_version:1:1}" -eq 8 ]; then
+      # tsd test runner doesn't work on node 8
+      npm run test:no-types;
+  else
+      npm test;
+  fi
 after_script:
   - coveralls < coverage/lcov.info

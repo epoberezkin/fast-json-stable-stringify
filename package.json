@@ -14,12 +14,15 @@
     "json-stable-stringify": "latest",
     "nyc": "^14.1.0",
     "pre-commit": "^1.2.2",
-    "tape": "^4.11.0"
+    "tape": "^4.11.0",
+    "tsd": "^0.16.0"
   },
   "scripts": {
     "eslint": "eslint index.js test",
     "test-spec": "tape test/*.js",
-    "test": "npm run eslint && nyc npm run test-spec"
+    "test-types": "tsd",
+    "test": "npm run eslint && nyc npm run test-spec && npm run test-types",
+    "test:no-types": "npm run eslint && nyc npm run test-spec"
   },
   "repository": {
     "type": "git",
@@ -48,6 +51,9 @@
       "lcov",
       "text-summary"
     ]
+  },
+  "tsd": {
+    "directory": "test"
   },
   "engines": {
     "node": ">=8"
