@@ -14,7 +14,7 @@
     "json-stable-stringify": "latest",
     "nyc": "^14.1.0",
     "pre-commit": "^1.2.2",
-    "tape": "^4.11.0"
+    "tape": "^5.3.0"
   },
   "scripts": {
     "eslint": "eslint index.js test",
