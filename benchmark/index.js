@@ -8,6 +8,7 @@ const testData = require('./test.json');
 const stringifyPackages = {
   'JSON.stringify': JSON.stringify,
   'fastest-stable-stringify': require('../index').stringify,
+  'safe-stable-stringify': true,
   'fast-stable-stringify': true,
   'fast-json-stable-stringify': true,
   'faster-stable-stringify': true,
