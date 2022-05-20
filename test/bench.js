@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var stringify = require('../');
+var stringify = require('../').stringify;
 var tests = require('../benchmark/test.json');
 var expect = require('chai').expect;
 
