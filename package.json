@@ -4,6 +4,12 @@
   "description": "deterministic `JSON.stringify()` - a faster version of substack's json-stable-strigify without jsonify",
   "main": "index.js",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "benchmark": "^2.1.4",
@@ -17,6 +23,7 @@
     "tape": "^4.11.0"
   },
   "scripts": {
+    "build": "node --eval \"const content = fs.readFileSync('./index.js', 'utf8').replace('module.exports =', 'export default'); fs.writeFileSync('./index.mjs', content, 'utf8');\"",
     "eslint": "eslint index.js test",
     "test-spec": "tape test/*.js",
     "test": "npm run eslint && nyc npm run test-spec"
