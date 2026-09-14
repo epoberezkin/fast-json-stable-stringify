@@ -21,6 +21,10 @@ module.exports = function (data, opts) {
             node = node.toJSON();
         }
 
+        if (node instanceof Number || node instanceof String || node instanceof Boolean) {
+            node = node.valueOf();
+        }
+
         if (node === undefined) return;
         if (typeof node == 'number') return isFinite(node) ? '' + node : 'null';
         if (typeof node !== 'object') return JSON.stringify(node);
