@@ -16,9 +16,9 @@ module.exports = function (data, opts) {
     })(opts.cmp);
 
     var seen = [];
-    return (function stringify (node) {
+    return (function stringify (node, nodeKey) {
         if (node && node.toJSON && typeof node.toJSON === 'function') {
-            node = node.toJSON();
+            node = node.toJSON(nodeKey);
         }
 
         if (node === undefined) return;
@@ -30,7 +30,7 @@ module.exports = function (data, opts) {
             out = '[';
             for (i = 0; i < node.length; i++) {
                 if (i) out += ',';
-                out += stringify(node[i]) || 'null';
+                out += stringify(node[i], String(i)) || 'null';
             }
             return out + ']';
         }
@@ -47,7 +47,7 @@ module.exports = function (data, opts) {
         out = '';
         for (i = 0; i < keys.length; i++) {
             var key = keys[i];
-            var value = stringify(node[key]);
+            var value = stringify(node[key], key);
 
             if (!value) continue;
             if (out) out += ',';
@@ -55,5 +55,5 @@ module.exports = function (data, opts) {
         }
         seen.splice(seenIndex, 1);
         return '{' + out + '}';
-    })(data);
+    })(data, '');
 };
