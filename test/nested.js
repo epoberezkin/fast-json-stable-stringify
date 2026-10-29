@@ -42,3 +42,41 @@ test('acyclic but with reused obj-property pointers', function (t) {
     var y = { b: x, c: x };
     t.equal(stringify(y), '{"b":{"a":1},"c":{"a":1}}');
 });
+
+test('cyclic array (default)', function (t) {
+    t.plan(1);
+    var array = [];
+    array.push(array);
+    t.throws(function () { stringify(array); }, TypeError);
+});
+
+test('cyclic array (specifically allowed)', function (t) {
+    t.plan(1);
+    var array = [];
+    array.push(array);
+    t.equal(stringify(array, {cycles:true}), '["__cycle__"]');
+});
+
+test('mutually cyclic arrays', function (t) {
+    t.plan(2);
+    var one = [];
+    var two = [one];
+    one.push(two);
+    t.throws(function () { stringify(one); }, TypeError);
+    t.equal(stringify(one, {cycles:true}), '[["__cycle__"]]');
+});
+
+test('array cycle through an object', function (t) {
+    t.plan(1);
+    var array = [];
+    array.push({array:array});
+    t.equal(stringify(array, {cycles:true}), '[{"array":"__cycle__"}]');
+});
+
+test('repeated non-cyclic arrays', function (t) {
+    t.plan(2);
+    var array = [1, {b:2, a:3}];
+    var expected = '{"a":[1,{"a":3,"b":2}],"b":[1,{"a":3,"b":2}]}';
+    t.equal(stringify({a:array, b:array}), expected);
+    t.equal(stringify({a:array, b:array}, {cycles:true}), expected);
+});

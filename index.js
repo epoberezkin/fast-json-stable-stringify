@@ -25,16 +25,6 @@ module.exports = function (data, opts) {
         if (typeof node == 'number') return isFinite(node) ? '' + node : 'null';
         if (typeof node !== 'object') return JSON.stringify(node);
 
-        var i, out;
-        if (Array.isArray(node)) {
-            out = '[';
-            for (i = 0; i < node.length; i++) {
-                if (i) out += ',';
-                out += stringify(node[i]) || 'null';
-            }
-            return out + ']';
-        }
-
         if (node === null) return 'null';
 
         if (seen.indexOf(node) !== -1) {
@@ -43,6 +33,17 @@ module.exports = function (data, opts) {
         }
 
         var seenIndex = seen.push(node) - 1;
+        var i, out;
+        if (Array.isArray(node)) {
+            out = '[';
+            for (i = 0; i < node.length; i++) {
+                if (i) out += ',';
+                out += stringify(node[i]) || 'null';
+            }
+            seen.splice(seenIndex, 1);
+            return out + ']';
+        }
+
         var keys = Object.keys(node).sort(cmp && cmp(node));
         out = '';
         for (i = 0; i < keys.length; i++) {
